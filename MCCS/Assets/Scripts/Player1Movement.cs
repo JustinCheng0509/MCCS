@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 
 public class Player1Movement : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class Player1Movement : MonoBehaviour
     private void Update()
     {
         //left & right movement
-        var movement = Input.GetAxis("Horizontal");
+        var movement = Input.GetAxis("P1_Horizontal");
         transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
 
         //Jump

@@ -15,8 +15,8 @@ public class Player2Movement : MonoBehaviour
     private void Update()
     {
         //left & right movement
-        var movement = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(movement, 0, 0) * Time.deltaTime * MovementSpeed;
+        var movement2 = Input.GetAxis("P2_Horizontal");
+        transform.position += new Vector3(movement2, 0, 0) * Time.deltaTime * MovementSpeed;
 
         //Jump
         if (Input.GetKeyDown(KeyCode.UpArrow))
