@@ -25,7 +25,7 @@ public class Healthbar : MonoBehaviour
 
     public void ChangeColor() {
         sliderBackground.color = new Color(190, 87, 0, 255);
-        sliderFill.color = new Color(255,153,0,255);
+        sliderFill.color = new Color(255,0,0,255);
 
     }
 

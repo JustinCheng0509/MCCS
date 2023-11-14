@@ -5,8 +5,10 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     public int health;
+    public int health2;
     public int damage;
     public int maxHealth;
+    public int maxHealth2;
     private PlayerHealth playerhealth;
 
     public float breakPointP1;
@@ -21,6 +23,8 @@ public abstract class Enemy : MonoBehaviour
     {
         playerhealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         maxHealth = health;
+        health2 = health;
+        maxHealth2 = maxHealth;
         SetUpHealthbars();
     }
 
@@ -42,8 +46,26 @@ public abstract class Enemy : MonoBehaviour
     public void Damaged(int damage, int healthbarNum)
     {
 
-        health -= damage;
-        healthbars[healthbarNum].UpdateHealthBar(health, maxHealth);
+        if (typeNum != 2)
+        {
+            health -= damage;
+            healthbars[0].UpdateHealthBar(health, maxHealth);
+        }
+        else {
+            if (healthbarNum == 0)
+            {
+                health -= damage;
+                healthbars[0].UpdateHealthBar(health, maxHealth);
+                Debug.Log("Green decrease");
+
+            }
+            else
+            {
+                health2 -= damage;
+                healthbars[1].UpdateHealthBar(health2, maxHealth2);
+                Debug.Log("Orange decrease");
+            }
+        }
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -76,16 +98,17 @@ public abstract class Enemy : MonoBehaviour
         switch (typeNum) {
             case 0:
                 healthbars[1].gameObject.SetActive(false);
-                healthbars[0].ChangeColor();
                 healthbars[0].UpdateHealthBar(health, maxHealth);
                 break;
             case 1:
                 healthbars[1].gameObject.SetActive(false);
+                healthbars[0].ChangeColor();
                 healthbars[0].UpdateHealthBar(health, maxHealth);
                 break;
             case 2:
                 healthbars[0].UpdateHealthBar(health, maxHealth);
-                healthbars[1].UpdateHealthBar(health, maxHealth);
+                healthbars[1].UpdateHealthBar(health2, maxHealth2);
+                
                 break;
         }
     }
