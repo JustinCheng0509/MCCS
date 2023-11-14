@@ -8,13 +8,13 @@ public class PlayerAttack : MonoBehaviour
     private PolygonCollider2D Collider2D;
     public float StartTime;
     public float time;
-    public string AttackInput = "Attack1";
+    public string AttackInput1 = "Attack1";
+    public int playerNum;
 
     void Start()
     {
         AttackAni = GetComponentInParent<Animator>(); // 修改为直接获取当前对象的动画组件
         Collider2D = GetComponent<PolygonCollider2D>();
-   
     }
 
     void Update()
@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetButtonDown(AttackInput))
+        if (Input.GetButtonDown(AttackInput1))
         {
             
             AttackAni.SetTrigger("Attack");
@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<Enemy>().Damaged(Damage);
+            other.GetComponent<Enemy>().Damaged(Damage, 0);
         }
     }
 }

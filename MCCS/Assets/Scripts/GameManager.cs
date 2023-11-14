@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
     }
 
    public void LoadRound(){
-        Debug.Log("Loading Scene");
         SceneManager.LoadScene(1);
     }
 
