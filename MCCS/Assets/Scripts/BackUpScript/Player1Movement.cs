@@ -13,6 +13,7 @@ public class Player1Movement : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody2D _rigidbody;
     private Collider2D _collider;
+    private Animator MyAnimator;
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -31,6 +32,7 @@ public class Player1Movement : MonoBehaviour
         {
             didJump = true;
             _rigidbody.AddForce(Vector2.up * Jumpforce, ForceMode2D.Impulse);
+            MyAnimator.SetBool("Jump",true);
         }
 
         //fall through platform
@@ -67,4 +69,6 @@ public class Player1Movement : MonoBehaviour
         Physics2D.IgnoreCollision(_collider, platformCollider, false);
 
     }
+
+
 }

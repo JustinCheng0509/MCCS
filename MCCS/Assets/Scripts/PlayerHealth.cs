@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void DamagePlayer(int damage)
@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        BlinkPlayer(blinks, time);
+        BlinkPlayer(blinks,time);
     }
 
     public void BlinkPlayer(int numBlinks, float seconds)
@@ -40,8 +40,8 @@ public class PlayerHealth : MonoBehaviour
     }
     IEnumerator DoBlinks(int numBlinks, float seconds)
     {
-        for (int i = 0; i < numBlinks * 2; i++)
-        {
+        for(int i = 0; i < numBlinks * 2; i++)
+        { 
             myRender.enabled = !myRender.enabled;
             yield return new WaitForSeconds(seconds);
         }

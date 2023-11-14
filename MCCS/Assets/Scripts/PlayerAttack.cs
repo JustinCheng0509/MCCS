@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -9,33 +8,31 @@ public class PlayerAttack : MonoBehaviour
     private PolygonCollider2D Collider2D;
     public float StartTime;
     public float time;
+    public string AttackInput = "Attack1";
 
-    // Start is called before the first frame update
     void Start()
     {
-        AttackAni = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        AttackAni = GetComponentInParent<Animator>(); // 修改为直接获取当前对象的动画组件
         Collider2D = GetComponent<PolygonCollider2D>();
+   
     }
 
-    // Update is called once per frame
     void Update()
     {
         Attack();
     }
 
-
-
-    private void Attack()
+    void Attack()
     {
-        if (Input.GetButtonDown("Attack"))
+        if (Input.GetButtonDown(AttackInput))
         {
-
+            
             AttackAni.SetTrigger("Attack");
             StartCoroutine(StartAttack());
         }
 
-
     }
+
     IEnumerator StartAttack()
     {
         yield return new WaitForSeconds(StartTime);
@@ -56,5 +53,4 @@ public class PlayerAttack : MonoBehaviour
             other.GetComponent<Enemy>().Damaged(Damage);
         }
     }
-
 }
