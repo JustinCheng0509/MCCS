@@ -6,6 +6,7 @@ public abstract class Enemy : MonoBehaviour
 {
     public int health;
     public int damage;
+    public int maxHealth;
     private PlayerHealth playerhealth;
 
     // Start is called before the first frame update
