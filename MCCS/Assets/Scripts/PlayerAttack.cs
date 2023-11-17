@@ -4,16 +4,14 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public int Damage;
-    private Animator AttackAni;
     private PolygonCollider2D Collider2D;
     public float StartTime;
     public float time;
-    public string AttackInput1 = "Attack";
+    public string AttackInput1 = "P1_Attack";
     public int playerNum;
 
     void Start()
     {
-        AttackAni = GetComponentInParent<Animator>(); 
         Collider2D = GetComponent<PolygonCollider2D>();
     }
 
@@ -26,8 +24,6 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetButtonDown(AttackInput1))
         {
-            
-            AttackAni.SetTrigger("Attack");
             StartCoroutine(StartAttack());
         }
 
