@@ -14,12 +14,13 @@ public class EnemyS : Enemy
     public float StartTime;
     public float time;
 
-    private Transform PlayerTransformPos;
+    private GameObject[] PlayerTransformPos;
+ 
     // Start is called before the first frame update
     public void Start()
     {
         base.Start();
-        PlayerTransformPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        PlayerTransformPos = GameObject.FindGameObjectsWithTag("Player");
 
     }
 
@@ -31,12 +32,21 @@ public class EnemyS : Enemy
 
         if (PlayerTransformPos != null)
         {
-            Distance = (transform.position - PlayerTransformPos.position).magnitude;
+            Distance = (transform.position - PlayerTransformPos[0].transform.position).magnitude;
 
             if (Distance < Radius)
             {
-                transform.position = Vector2.MoveTowards(transform.position, PlayerTransformPos.position, Speed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, PlayerTransformPos[0].transform.position, Speed * Time.deltaTime);
 
+            }
+            else {
+                Distance = (transform.position - PlayerTransformPos[1].transform.position).magnitude;
+
+                if (Distance < Radius)
+                {
+                    transform.position = Vector2.MoveTowards(transform.position, PlayerTransformPos[1].transform.position, Speed * Time.deltaTime);
+
+                }
             }
 
 

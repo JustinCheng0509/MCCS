@@ -4,17 +4,15 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public int Damage;
-    private Animator AttackAni;
     private PolygonCollider2D Collider2D;
     public float StartTime;
     public float time;
-    public string AttackInput = "Attack1";
+    public string AttackInput1 = "P1_Attack";
+    public int playerNum;
 
     void Start()
     {
-        AttackAni = GetComponentInParent<Animator>(); // 修改为直接获取当前对象的动画组件
         Collider2D = GetComponent<PolygonCollider2D>();
-   
     }
 
     void Update()
@@ -24,10 +22,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetButtonDown(AttackInput))
+        if (Input.GetButtonDown(AttackInput1))
         {
-            
-            AttackAni.SetTrigger("Attack");
             StartCoroutine(StartAttack());
         }
 
@@ -50,7 +46,10 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<Enemy>().Damaged(Damage);
+            Enemy temp = other.GetComponent<Enemy>();
+            if (temp.typeNum==2 || playerNum == temp.typeNum) {
+                other.GetComponent<Enemy>().Damaged(Damage, playerNum);
+            }
         }
     }
 }
