@@ -9,7 +9,7 @@ public abstract class Player : MonoBehaviour
     protected Animator _animator;
     [SerializeField] private CircleCollider2D _feetCollider;
     [SerializeField] private float movementSmoothing = 0.05f;
-    [SerializeField] private float attackSpeed = 2f;
+    
 
 
     [SerializeField] protected bool _isGrounded = false;
@@ -28,6 +28,10 @@ public abstract class Player : MonoBehaviour
     public float jumpForce;
     public float moveSpeed;
     public float xMovement = 0f;
+
+    protected bool canAttack = true;
+    public float attackCooldown = 0f;
+    
 
     [Header("Events")]
     [Space]
@@ -122,12 +126,20 @@ public abstract class Player : MonoBehaviour
     }
 
     private void Attack() {
-        _animator.SetBool("DidAttack", true);
-        StartCoroutine(AttackCD());
+        if (canAttack)
+        {
+            canAttack = false;
+            _animator.SetBool("DidAttack", true);
+            StartCoroutine(AttackCD());
+        }
     }
 
     private IEnumerator AttackCD() {
-        yield return new WaitForSeconds(attackSpeed);
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+    public void OnAttackAnimationEnd()
+    {
         _animator.SetBool("DidAttack", false);
     }
 }

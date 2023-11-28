@@ -5,6 +5,7 @@ using UnityEngine;
 public class CannonBall : MonoBehaviour
 {
     public BoxCollider2D boxCollider;
+    public int damage = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,15 @@ public class CannonBall : MonoBehaviour
     {
         if (boxCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { 
             Destroy(gameObject); // 销毁炮弹
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 检测碰到的是否是敌人
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // 对敌人造成伤害
+            collision.gameObject.GetComponent<Enemy>().Damaged(damage, 0);
         }
     }
 }

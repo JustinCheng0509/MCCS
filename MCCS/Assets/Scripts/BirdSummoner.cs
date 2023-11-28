@@ -22,6 +22,7 @@ public class BirdSummoner : MonoBehaviour
 
         // 创建鸟的实例
         GameObject bird = Instantiate(birdPrefab, characterPosition, Quaternion.identity);
+       
 
         // 设置鸟的速度和方向
         Rigidbody2D rb = bird.GetComponent<Rigidbody2D>();
