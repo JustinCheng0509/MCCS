@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class CannonballSpawner : MonoBehaviour
 {
-    public GameObject cannonballPrefab; // ÅÚµ¯Ô¤Éè
-    public float spawnDistance = 5f; // Éú³É¾àÀë
+    public GameObject cannonballPrefab;
+    public float spawnDistance = 5f;
 
     void Update()
     {

@@ -4,16 +4,17 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    public int health;
+    public int health1;
+    public int maxHealth1;
     public int health2;
-    public int damage;
-    public int maxHealth;
     public int maxHealth2;
+
+    public int damage;
     private PlayerHealth playerhealth;
 
-    public float breakPointP1;
+    /*public float breakPointP1;
     public float breakPointP2;
-    public float breakPointBoth;
+    public float breakPointBoth;*/
     public int typeNum;
 
     public Healthbar[] healthbars;
@@ -21,17 +22,19 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        playerhealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-        maxHealth = health;
-        health2 = health;
-        maxHealth2 = maxHealth;
+        //playerhealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        health1 = maxHealth1;
+        health2 = maxHealth2;
         SetUpHealthbars();
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if (health <= 0)
+        if (typeNum == 2)//enemy with both healthbars
+        {
+            if (health1 <= 0 && health2 <= 0) Destroy(gameObject);
+        }else  if (health1 <= 0)
         {
             Destroy(gameObject);
         }
@@ -40,22 +43,42 @@ public abstract class Enemy : MonoBehaviour
     public void SetUpHealthbars()
     {
         healthbars = GetComponentsInChildren<Healthbar>();
-        SetEnemyType();
+        healthbars[0].UpdateHealthBar(health1, maxHealth1);
+        if(typeNum==2)healthbars[1].UpdateHealthBar(health2, maxHealth2);
     }
 
     public void Damaged(int damage, int healthbarNum)
     {
-
+        if (typeNum == 2) //enemy with both healthbars
+        {
+            if (healthbarNum == 0)
+            {
+                health1 -= damage;
+                if (health1 < 0) health1 = 0;
+                healthbars[0].UpdateHealthBar(health1, maxHealth1);
+            }
+            else
+            {
+                health2 -= damage;
+                if (health2 < 0) health2 = 0;
+                healthbars[1].UpdateHealthBar(health2, maxHealth2);
+            }
+        }
+        else if (healthbarNum == typeNum) {
+            health1 -= damage;
+            healthbars[0].UpdateHealthBar(health1, maxHealth1);
+        }
+/*
         if (typeNum != 2)
         {
-            health -= damage;
-            healthbars[0].UpdateHealthBar(health, maxHealth);
+            health1 -= damage;
+            healthbars[0].UpdateHealthBar(health1, maxHealth1);
         }
         else {
             if (healthbarNum == 0)
             {
-                health -= damage;
-                healthbars[0].UpdateHealthBar(health, maxHealth);
+                health1 -= damage;
+                healthbars[0].UpdateHealthBar(health1, maxHealth1);
                 Debug.Log("Green decrease");
 
             }
@@ -65,11 +88,12 @@ public abstract class Enemy : MonoBehaviour
                 healthbars[1].UpdateHealthBar(health2, maxHealth2);
                 Debug.Log("Orange decrease");
             }
-        }
+        }*/
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
+        /*
         if (other.gameObject.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.CapsuleCollider2D")
         {
             if (playerhealth != null)
@@ -77,10 +101,10 @@ public abstract class Enemy : MonoBehaviour
                 playerhealth.DamagePlayer(damage);
             }
 
-        }
+        }*/
     }
 
-    private void SetEnemyType() {
+    /*private void SetEnemyType() {
         float seed = Random.value;
         if (seed >= 0.0 && seed <= breakPointP1)
         {
@@ -111,5 +135,5 @@ public abstract class Enemy : MonoBehaviour
                 
                 break;
         }
-    }
+    }*/
 }

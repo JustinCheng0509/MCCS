@@ -5,9 +5,18 @@ using UnityEngine.Events;
 
 public abstract class Player : MonoBehaviour
 {
+    public Healthbar healthbar;
     private Rigidbody2D _rigidBody;
     protected Animator _animator;
-    [SerializeField] private CircleCollider2D _feetCollider;
+    private SpriteRenderer _spriteRenderer;
+
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float health;
+    [SerializeField] private bool didTakeDamage = false;
+    public float iFrames;
+
+    [SerializeField] protected BoxCollider2D _boxCollider;
+    [SerializeField] protected CircleCollider2D _feetCollider;
     [SerializeField] private float movementSmoothing = 0.05f;
     
 
@@ -32,6 +41,10 @@ public abstract class Player : MonoBehaviour
 
     protected bool canAttack = true;
     public float attackCooldown = 0f;
+
+    private Vector2 screenBounds;
+    private float _width;
+    private float _height;
     
 
     [Header("Events")]
@@ -47,8 +60,17 @@ public abstract class Player : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _feetCollider = GetComponent<CircleCollider2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        health = maxHealth;
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        _width = _spriteRenderer.bounds.size.x/2;
+        _height = _spriteRenderer.bounds.size.y/2;
     }
+
+	protected abstract void SpecialAttack();
 
 
     protected void UpdateGrounded() {
@@ -117,11 +139,15 @@ public abstract class Player : MonoBehaviour
             if (!_animator.GetBool("DidAttack"))
             Attack();
         }
+
+        if (Input.GetButtonDown(specialName)) {
+            SpecialAttack();
+        }
     }
 
     private IEnumerator EnableFootCollision()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         _feetCollider.enabled = true;
         _isFootDisabled = false;
     }
@@ -142,5 +168,41 @@ public abstract class Player : MonoBehaviour
     public void OnAttackAnimationEnd()
     {
         _animator.SetBool("DidAttack", false);
+    }
+
+    private IEnumerator TookDamage() {
+        didTakeDamage = true;
+        health -= 10;
+        if (health < 0) GameManager.Instance.EndGame();
+
+        healthbar.UpdateHealthBar(health, maxHealth);
+        _spriteRenderer.color = Color.red;
+        moveSpeed = 60f;
+        yield return new WaitForSeconds(iFrames);
+        moveSpeed = 40f;
+        _spriteRenderer.color = Color.white;
+        didTakeDamage = false;
+    }
+
+    public void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Enemy") {
+            if (!didTakeDamage)
+            {
+                Physics2D.IgnoreCollision(_feetCollider, other);
+                Physics2D.IgnoreCollision(_feetCollider, other.gameObject.GetComponent<CircleCollider2D>());
+                StartCoroutine(TookDamage());
+                Physics2D.IgnoreCollision(_feetCollider, other.gameObject.GetComponent<CircleCollider2D>(), false);
+
+            }
+        }
+    }
+
+	public void LateUpdate()
+	{
+        Vector3 viewPos = transform.position;
+        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x + _width, screenBounds.x * -1 - _width);
+        viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y + _height, screenBounds.y * -1 - _height);
+        //Debug.Log(viewPos);
+        //transform.position = viewPos;
     }
 }

@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public int selectedLevelNumber;
     public Button startButton;
 
+    public int roundNum = 1;
+    private float preRoundDelay = 5;
+
     public enum GameState {
         MainMenu,
         PreRound,
@@ -46,7 +49,7 @@ public class GameManager : MonoBehaviour
                 LoadPreRound();
                 break;
             case GameState.Round:
-                LoadRound();
+                SceneManager.LoadScene(roundNum);
                 break;
             case GameState.EndScreen:
                 break;
@@ -60,11 +63,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadPreRound() {
-
+        SceneManager.LoadScene("PreRound");
+        StartCoroutine(PlayPreRoundVideo());
     }
 
-   public void LoadRound(){
-        SceneManager.LoadScene(1);
+    public void EndGame() {
+        SceneManager.LoadScene(0);
     }
 
 	// Start is called before the first frame update
@@ -77,5 +81,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void RoundComplete() { 
+    
+    }
+
+    private IEnumerator PlayPreRoundVideo()
+    {
+        yield return new WaitForSeconds(preRoundDelay);
+        roundNum++;
+        UpdateGameState(GameState.Round);
     }
 }

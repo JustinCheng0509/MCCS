@@ -30,8 +30,7 @@ public class CannonBall : MonoBehaviour
         // 检测碰到的是否是敌人
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // 对敌人造成伤害
-            collision.gameObject.GetComponent<Enemy>().Damaged(damage, 0);
+            collision.gameObject.GetComponent<Enemy>().Damaged(damage, 1);
         }
     }
 }
