@@ -11,6 +11,7 @@ public class Captain : Player
         horizontalName = "P1_Horizontal";
         jumpName = "P1_Jump";
         attackName = "P1_Attack";
+        specialName = "P1_Special";
     }
 
     // Update is called once per frame

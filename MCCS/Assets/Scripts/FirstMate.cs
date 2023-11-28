@@ -10,6 +10,7 @@ public class FirstMate : Player
         horizontalName = "P2_Horizontal";
         jumpName = "P2_Jump";
         attackName = "P2_Attack";
+        specialName = "P2_Special";
     }
 
     // Update is called once per frame

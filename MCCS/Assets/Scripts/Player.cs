@@ -16,7 +16,8 @@ public abstract class Player : MonoBehaviour
     [SerializeField] protected string horizontalName;
     [SerializeField] protected string jumpName;
     [SerializeField] protected string attackName;
-  
+    [SerializeField] protected string specialName;
+
 
 
     private bool _isFootDisabled = false;
