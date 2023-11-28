@@ -4,7 +4,7 @@ public class Bird : MonoBehaviour
 {
     public int damage = 10; // 鸟对敌人造成的伤害
 
-    // 设置鸟的速度
+
     public void SetVelocity(Vector2 velocity)
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
