@@ -9,6 +9,9 @@ public abstract class Player : MonoBehaviour
     private Rigidbody2D _rigidBody;
     protected Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    public bool isAbilityCD = false;
+
+    public float abilityCD = 5.0f;
 
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private float health;
@@ -140,9 +143,16 @@ public abstract class Player : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetButtonDown(specialName)) {
+        if (!isAbilityCD && Input.GetButtonDown(specialName)) {
+            isAbilityCD = true;
             SpecialAttack();
+            StartCoroutine(SetAbilityCD());
         }
+    }
+
+    private IEnumerator SetAbilityCD() {
+        yield return new WaitForSeconds(abilityCD);
+        isAbilityCD = false;
     }
 
     private IEnumerator EnableFootCollision()

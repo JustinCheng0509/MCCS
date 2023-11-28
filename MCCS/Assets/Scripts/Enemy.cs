@@ -49,6 +49,10 @@ public abstract class Enemy : MonoBehaviour
 
     public void Damaged(int damage, int healthbarNum)
     {
+        if (typeNum == 4) {
+            health1 -= damage;
+            healthbars[0].UpdateHealthBar(health1, maxHealth1);
+        }
         if (typeNum == 2) //enemy with both healthbars
         {
             if (healthbarNum == 0)
