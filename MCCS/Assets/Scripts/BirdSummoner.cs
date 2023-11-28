@@ -27,8 +27,15 @@ public class BirdSummoner : MonoBehaviour
         Rigidbody2D rb = bird.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            rb.isKinematic = true; 
-            Vector2 direction = character.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+            rb.isKinematic = true;
+            Vector2 direction;
+            if (character.transform.localScale.x > 0)
+            {
+                direction = Vector2.right;
+            }
+            else {
+                direction = Vector2.left;
+            }
             rb.velocity = direction * speed; 
         }
 
@@ -37,20 +44,6 @@ public class BirdSummoner : MonoBehaviour
         if (collider != null)
         {
             collider.isTrigger = true;
-        }
-    }
-
-    void LateUpdate()
-    {
-        foreach (GameObject bird in GameObject.FindGameObjectsWithTag("Bird"))
-        {
-    
-            Vector3 screenPoint = Camera.main.WorldToViewportPoint(bird.transform.position);
-
-            if (screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1)
-            {
-                Destroy(bird);
-            }
         }
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FirstMate : Player
 {
+
+    public GameObject cannonballPrefab;
+    public float spawnDistance;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +27,26 @@ public class FirstMate : Player
         UpdateGrounded();
         Move(xMovement * Time.fixedDeltaTime, _didJump);
         _didJump = false;
+    }
+
+	protected override void SpecialAttack()
+	{
+        Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, Camera.main.nearClipPlane));
+        spawnPosition.z = 0;
+        float direction;
+        if (transform.localScale.x < 0)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
+
+        spawnPosition.x = transform.position.x + spawnDistance * direction;
+
+        spawnPosition += Vector3.forward * spawnDistance;
+
+        Instantiate(cannonballPrefab, spawnPosition, Quaternion.identity);
     }
 }

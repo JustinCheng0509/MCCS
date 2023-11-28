@@ -20,7 +20,7 @@ public class Bird : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // 对敌人造成伤害
-            collision.gameObject.GetComponent<Enemy>().Damaged(damage, 1);
+            collision.gameObject.GetComponent<Enemy>().Damaged(damage, 0);
         }
     }
 
