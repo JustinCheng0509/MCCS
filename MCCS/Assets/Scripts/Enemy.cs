@@ -35,7 +35,9 @@ public abstract class Enemy : MonoBehaviour
     {
         if (typeNum == 2)//enemy with both healthbars
         {
-            if (health1 <= 0 && health2 <= 0) Destroy(gameObject);
+            if (health1 <= 0 && health2 <= 0) {
+                Die();
+            }
         }else  if (health1 <= 0)
         {
             Die();
@@ -44,7 +46,9 @@ public abstract class Enemy : MonoBehaviour
 
     private void Die() {
         Instantiate(coinPrefab, transform.position, Quaternion.identity);
+        //Debug.Log("Hello");
         Destroy(gameObject);
+
     }
 
     public void SetUpHealthbars()
