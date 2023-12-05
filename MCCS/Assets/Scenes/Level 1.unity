@@ -351,9 +351,25 @@ PrefabInstance:
       value: Captain
       objectReference: {fileID: 0}
     - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
+      propertyPath: mana
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
+      propertyPath: manaPS
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 716051896}
+    - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
+      propertyPath: abilityBar
+      value: 
+      objectReference: {fileID: 716051898}
+    - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
+      propertyPath: manaPerCoin
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
       propertyPath: otherPlayer
       value: 
@@ -1930,6 +1946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e57ac257a992246a54f02737bed45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
   health1: 0
   maxHealth1: 0
   health2: 0
@@ -2404,12 +2421,36 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 975484224685802577, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895680767726689604, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895680767726689604, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5459079264735939702, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5459079264735939702, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636305913818314482, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636305913818314482, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636305913818314482, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6034250732628533280, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
@@ -2515,6 +2556,28 @@ MonoBehaviour:
 --- !u!114 &716051896 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2623180111440829712, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+  m_PrefabInstance: {fileID: 716051894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bf5c541f66afa4b90791792fae7ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &716051897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6155778645888484778, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+  m_PrefabInstance: {fileID: 716051894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bf5c541f66afa4b90791792fae7ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &716051898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5489533374507294871, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
   m_PrefabInstance: {fileID: 716051894}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -3948,9 +4011,25 @@ PrefabInstance:
       value: First Mate
       objectReference: {fileID: 0}
     - target: {fileID: 4357192476310098398, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
+      propertyPath: mana
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357192476310098398, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
+      propertyPath: manaPS
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357192476310098398, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 716051895}
+    - target: {fileID: 4357192476310098398, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
+      propertyPath: abilityBar
+      value: 
+      objectReference: {fileID: 716051897}
+    - target: {fileID: 4357192476310098398, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
+      propertyPath: manaPerCoin
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10800,6 +10879,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9187015055175336154, guid: a6f9feefa07ad214196ae17c281bc21b, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 8386900283460596894, guid: e46b2e62392416c4f8743f3bc449570e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
