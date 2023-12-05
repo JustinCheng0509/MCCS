@@ -129,7 +129,7 @@ MonoBehaviour:
   jumpForce: 700
   moveSpeed: 40
   xMovement: 0
-  attackCooldown: 8
+  attackCooldown: 0.8
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -393,6 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 2
   StartTime: 0.2
-  time: 0.2
+  time: 0.8
   AttackInput1: P1_Attack
   playerNum: 0
+  didAttack: 0

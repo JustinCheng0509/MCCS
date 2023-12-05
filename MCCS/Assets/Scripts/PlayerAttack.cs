@@ -10,6 +10,8 @@ public class PlayerAttack : MonoBehaviour
     public string AttackInput1 = "P1_Attack";
     public int playerNum;
 
+    public bool didAttack = false;
+
     void Start()
     {
         Collider2D = GetComponent<PolygonCollider2D>();
@@ -22,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetButtonDown(AttackInput1))
+        if (!didAttack && Input.GetButtonDown(AttackInput1))
         {
             StartCoroutine(StartAttack());
         }
@@ -33,6 +35,7 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(StartTime);
         Collider2D.enabled = true;
+        didAttack = true;
         StartCoroutine(DisableHitBox());
     }
 
@@ -40,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         Collider2D.enabled = false;
+        didAttack = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
