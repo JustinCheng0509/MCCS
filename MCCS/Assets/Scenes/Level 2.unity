@@ -921,6 +921,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 331720043}
     - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
+      propertyPath: abilityBar
+      value: 
+      objectReference: {fileID: 331720045}
+    - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 1980797829}
@@ -1134,6 +1138,28 @@ MonoBehaviour:
 --- !u!114 &331720043 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2623180111440829712, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+  m_PrefabInstance: {fileID: 331720041}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bf5c541f66afa4b90791792fae7ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &331720044 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6155778645888484778, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+  m_PrefabInstance: {fileID: 331720041}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bf5c541f66afa4b90791792fae7ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &331720045 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5489533374507294871, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
   m_PrefabInstance: {fileID: 331720041}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -2437,6 +2463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e57ac257a992246a54f02737bed45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
   health1: 0
   maxHealth1: 0
   health2: 0
@@ -17619,6 +17646,10 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 331720042}
+    - target: {fileID: 4357192476310098398, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
+      propertyPath: abilityBar
+      value: 
+      objectReference: {fileID: 331720044}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

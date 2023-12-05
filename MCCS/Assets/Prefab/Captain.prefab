@@ -104,6 +104,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 0}
+  abilityBar: {fileID: 0}
+  isAbilityCD: 0
+  abilityCD: 5
+  maxMana: 50
+  mana: 0
+  manaPS: 2
+  manaPerCoin: 5
   maxHealth: 100
   health: 100
   didTakeDamage: 0

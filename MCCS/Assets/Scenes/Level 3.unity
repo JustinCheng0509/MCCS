@@ -969,6 +969,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 586938072}
     - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
+      propertyPath: abilityBar
+      value: 
+      objectReference: {fileID: 586938074}
+    - target: {fileID: 2846040928568240759, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 1417999419}
@@ -1856,6 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1124d55c530094a876e6b5734735f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
   health1: 0
   maxHealth1: 0
   health2: 0
@@ -2016,6 +2021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e57ac257a992246a54f02737bed45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 0}
   health1: 0
   maxHealth1: 0
   health2: 0
@@ -2117,11 +2123,27 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3895680767726689604, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895680767726689604, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5459079264735939702, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5459079264735939702, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636305913818314482, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636305913818314482, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -2228,6 +2250,28 @@ MonoBehaviour:
 --- !u!114 &586938072 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2623180111440829712, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+  m_PrefabInstance: {fileID: 586938070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bf5c541f66afa4b90791792fae7ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &586938073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6155778645888484778, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
+  m_PrefabInstance: {fileID: 586938070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bf5c541f66afa4b90791792fae7ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &586938074 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5489533374507294871, guid: dd2a3798a863e6545bafa43f680f5a65, type: 3}
   m_PrefabInstance: {fileID: 586938070}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -4036,6 +4080,10 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 586938071}
+    - target: {fileID: 4357192476310098398, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
+      propertyPath: abilityBar
+      value: 
+      objectReference: {fileID: 586938073}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
