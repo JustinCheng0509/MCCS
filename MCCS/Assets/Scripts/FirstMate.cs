@@ -7,6 +7,9 @@ public class FirstMate : Player
 
     public GameObject cannonballPrefab;
     public float spawnDistance;
+    public GameObject otherPlayer;
+    public float maxDistance = 25.0f;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +17,7 @@ public class FirstMate : Player
         jumpName = "P2_Jump";
         attackName = "P2_Attack";
         specialName = "P2_Special";
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -21,15 +25,30 @@ public class FirstMate : Player
     {
         HandleInput();
     }
-
     private void FixedUpdate()
     {
         UpdateGrounded();
+
+        // 先进行距离检查和移动限制
+        float distance = Vector3.Distance(transform.position, otherPlayer.transform.position);
+        if (distance > maxDistance)
+        {
+            bool isLeft = transform.position.x < otherPlayer.transform.position.x;
+            float moveDirection = Input.GetAxis(horizontalName); // 使用角色特定的输入名称
+
+            if ((isLeft && moveDirection < 0) || (!isLeft && moveDirection > 0))
+            {
+                // 这里暂时停止移动
+                xMovement = 0; // 假设xMovement是控制水平移动的变量
+            }
+        }
+
+        // 然后执行移动
         Move(xMovement * Time.fixedDeltaTime, _didJump);
         _didJump = false;
     }
 
-	protected override void SpecialAttack()
+    protected override void SpecialAttack()
 	{
         Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, Camera.main.nearClipPlane));
         spawnPosition.z = 0;

@@ -104,6 +104,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthbar: {fileID: 0}
+  abilityBar: {fileID: 0}
+  isAbilityCD: 0
+  abilityCD: 5
+  maxMana: 50
+  mana: 0
+  manaPS: 0
+  manaPerCoin: 0
   maxHealth: 100
   health: 100
   didTakeDamage: 0
@@ -111,6 +118,9 @@ MonoBehaviour:
   _boxCollider: {fileID: 0}
   _feetCollider: {fileID: 0}
   movementSmoothing: 0.05
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
   _isGrounded: 0
   horizontalName: 
   jumpName: 
@@ -119,12 +129,14 @@ MonoBehaviour:
   jumpForce: 700
   moveSpeed: 40
   xMovement: 0
-  attackCooldown: 1
+  attackCooldown: 5
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
   cannonballPrefab: {fileID: 5529525191948524186, guid: ff584c713d4ab25488a585d41f390e3f, type: 3}
   spawnDistance: 1.5
+  otherPlayer: {fileID: 0}
+  maxDistance: 25
 --- !u!50 &6191317736321929775
 Rigidbody2D:
   serializedVersion: 4
@@ -348,6 +360,14 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: 1.8966966
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 1.3406839
+      objectReference: {fileID: 0}
+    - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
       value: 0.0896368
       objectReference: {fileID: 0}
@@ -389,19 +409,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].x
-      value: 0.9739751
+      value: 0.98627084
       objectReference: {fileID: 0}
     - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[6].y
-      value: -0.48728526
+      value: -0.5979451
       objectReference: {fileID: 0}
     - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].x
-      value: 1.7584981
+      value: 2.0044093
       objectReference: {fileID: 0}
     - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].y
-      value: -0.24520227
+      value: -0.5464432
       objectReference: {fileID: 0}
     - target: {fileID: 7618018671054892618, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[8].x

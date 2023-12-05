@@ -118,6 +118,9 @@ MonoBehaviour:
   _boxCollider: {fileID: 0}
   _feetCollider: {fileID: 0}
   movementSmoothing: 0.05
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
   _isGrounded: 0
   horizontalName: 
   jumpName: 
@@ -126,7 +129,7 @@ MonoBehaviour:
   jumpForce: 700
   moveSpeed: 40
   xMovement: 0
-  attackCooldown: 0
+  attackCooldown: 8
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -145,6 +148,7 @@ MonoBehaviour:
   birdSpeed: 15
   birdPrefab: {fileID: 8069213024331717540, guid: b1e6f0d8eb2086241af6658af6e96bff, type: 3}
   otherPlayer: {fileID: 0}
+  maxDistance: 25
 --- !u!50 &2241060499875697552
 Rigidbody2D:
   serializedVersion: 4
@@ -365,15 +369,15 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.4602046, y: 0.7689407}
+    - - {x: 1.8564317, y: 1.2579019}
       - {x: 0.0896368, y: 1.5504355}
       - {x: -1.2496276, y: 1.0868175}
       - {x: -1.2695603, y: 0.548417}
       - {x: -1.2680577, y: -0.5825327}
       - {x: -0.5391095, y: -0.81043005}
-      - {x: 0.9739751, y: -0.48728526}
-      - {x: 1.7584981, y: -0.24520227}
-      - {x: 1.9923024, y: 0.20158014}
+      - {x: 1.0329876, y: -0.77391756}
+      - {x: 2.0282698, y: -0.69201183}
+      - {x: 2.7257447, y: 0.36175713}
   m_UseDelaunayMesh: 0
 --- !u!114 &7487653277881380074
 MonoBehaviour:

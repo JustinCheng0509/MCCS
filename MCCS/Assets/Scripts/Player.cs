@@ -27,9 +27,9 @@ public abstract class Player : MonoBehaviour
     [SerializeField] protected BoxCollider2D _boxCollider;
     [SerializeField] protected CircleCollider2D _feetCollider;
     [SerializeField] private float movementSmoothing = 0.05f;
-    
 
 
+    [SerializeField] private LayerMask groundMask;
     [SerializeField] protected bool _isGrounded = false;
     [SerializeField] protected string horizontalName;
     [SerializeField] protected string jumpName;
@@ -84,23 +84,23 @@ public abstract class Player : MonoBehaviour
 
 
     protected void UpdateGrounded() {
-        if (!_isFootDisabled) {
-            //Debug.Log("STILL DISABLED");
-            //Debug.Log(_rigidBody.velocity.y);
-            if (_rigidBody.velocity.y==0 || _feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) //means player is touching platform or floor
-            {
-                // Debug.Log("WHAT");
-                //_feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))
+        bool wasGrounded = _isGrounded;
+        _isGrounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_feetCollider.transform.position, _feetCollider.radius, groundMask);
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject && _rigidBody.velocity.y == 0)
+            { //make sure not colliding with self
+                //if we get in here it means we hit groundMask
                 _isGrounded = true;
-                _didJump = false;
-                _animator.SetBool("DidJump", false); // first frame character landed, stop jumping animation
-            }
-            else
-            {
-                _isGrounded = false;
+                if (!wasGrounded)
+                {
+                    //means first frame of land
+                    _animator.SetBool("DidJump", false);
+                }
             }
         }
-        
+
     }
 
     public void Move(float move, bool didJump)
@@ -120,6 +120,7 @@ public abstract class Player : MonoBehaviour
         //only jump if the button is pressed and character is grounded
         if (didJump && _isGrounded) {
             _isGrounded = false; //set grounded to false (player about to jump)
+            _animator.SetBool("DidJump", true);
             _rigidBody.AddForce(new Vector2(0f, jumpForce)); //makes player jump
         }
 	}
@@ -139,10 +140,6 @@ public abstract class Player : MonoBehaviour
         {
             //Debug.Log("JUMPED");
             _didJump = true;
-            _feetCollider.enabled = false;
-            _isFootDisabled = true;
-            _animator.SetBool("DidJump", true);
-            StartCoroutine(EnableFootCollision());
         }
 
         if (Input.GetButtonDown(attackName)) {
@@ -242,9 +239,13 @@ public abstract class Player : MonoBehaviour
 	public void LateUpdate()
 	{
         Vector3 viewPos = transform.position;
-        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x + _width, screenBounds.x * -1 - _width);
+/*        viewPos.x = Mathf.Clamp(viewPos.x, screenBounds.x + _width, screenBounds.x * -1 - _width);
         viewPos.y = Mathf.Clamp(viewPos.y, screenBounds.y + _height, screenBounds.y * -1 - _height);
+*/        if(viewPos.x< -10)
+        {
+            viewPos.x = -10;
+        }
         //Debug.Log(viewPos);
-        //transform.position = viewPos;
+        transform.position = viewPos;
     }
 }

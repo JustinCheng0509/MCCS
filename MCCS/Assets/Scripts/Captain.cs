@@ -8,6 +8,8 @@ public class Captain : Player
     public float birdSpeed;
     public GameObject birdPrefab;
     public GameObject otherPlayer;
+    public float maxDistance = 25.0f;
+    private Rigidbody2D rb;
 
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class Captain : Player
 
         Physics2D.IgnoreCollision(_feetCollider, otherPlayer.GetComponent<CircleCollider2D>());
         Physics2D.IgnoreCollision(_feetCollider, otherPlayer.GetComponent<BoxCollider2D>());
+        rb = GetComponent<Rigidbody2D>();
 
     }
 
@@ -28,15 +31,30 @@ public class Captain : Player
     {
         HandleInput();
     }
-
     private void FixedUpdate()
-	{
+    {
         UpdateGrounded();
+
+        // 先进行距离检查和移动限制
+        float distance = Vector3.Distance(transform.position, otherPlayer.transform.position);
+        if (distance > maxDistance)
+        {
+            bool isLeft = transform.position.x < otherPlayer.transform.position.x;
+            float moveDirection = Input.GetAxis(horizontalName); // 使用角色特定的输入名称
+
+            if ((isLeft && moveDirection < 0) || (!isLeft && moveDirection > 0))
+            {
+                // 这里暂时停止移动
+                xMovement = 0; // 假设xMovement是控制水平移动的变量
+            }
+        }
+
+        // 然后执行移动
         Move(xMovement * Time.fixedDeltaTime, _didJump);
         _didJump = false;
-	}
+    }
 
-	protected override void SpecialAttack()
+    protected override void SpecialAttack()
 	{
         GameObject bird = Instantiate(birdPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = bird.GetComponent<Rigidbody2D>();
@@ -66,6 +84,7 @@ public class Captain : Player
 
     void LateUpdate()
     {
+        base.LateUpdate();
         foreach (GameObject bird in GameObject.FindGameObjectsWithTag("Bird"))
         {
 
