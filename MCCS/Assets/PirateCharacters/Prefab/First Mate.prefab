@@ -129,7 +129,7 @@ MonoBehaviour:
   jumpForce: 700
   moveSpeed: 40
   xMovement: 0
-  attackCooldown: 5
+  attackCooldown: 0.8
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -287,6 +287,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3460359081221059025}
     m_Modifications:
+    - target: {fileID: 6103199451761874692, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
+      propertyPath: time
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6103199451761874692, guid: b5165d34a43a71e478dc3ee2ac559920, type: 3}
       propertyPath: StartTime
       value: 0.2

@@ -376,9 +376,13 @@ PrefabInstance:
       propertyPath: otherPlayer
       value: 
       objectReference: {fileID: 937183199}
+    - target: {fileID: 7487653277881380074, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
+      propertyPath: time
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8198551882162282235, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.69
+      value: -2.17
       objectReference: {fileID: 0}
     - target: {fileID: 8198551882162282235, guid: 48e04a85a4ff4994b94be92acc88cdf5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2364,7 +2368,11 @@ Transform:
   m_GameObject: {fileID: 1592228352}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 2.9957736, y: 2.1676016, z: -10.494038}
+=======
+  m_LocalPosition: {x: 3.0206254, y: 2.987132, z: -10.494038}
+>>>>>>> pr/18
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4387,7 +4395,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3460359081221059025, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.84
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 3460359081221059025, guid: fda9f4cac1b7581459339107c096dfd2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9052,11 +9060,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 28.629562, y: 1.6283579}
-      - {x: -9.235612, y: 1.6600233}
-      - {x: -9.263305, y: -2.0355737}
-      - {x: -9.275718, y: -3.692206}
+    - - {x: 28.629562, y: 2.766914}
+      - {x: -8.944947, y: 2.7044854}
+      - {x: -8.931207, y: -2.0686996}
+      - {x: -8.911334, y: -3.7584574}
       - {x: 0.818607, y: -3.610675}
+      - {x: 3.3063152, y: -3.6079683}
       - {x: 28.638084, y: -3.5804079}
   m_UseDelaunayMesh: 0
 --- !u!4 &1715751946
