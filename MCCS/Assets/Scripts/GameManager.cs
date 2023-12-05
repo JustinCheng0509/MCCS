@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public int roundNum = 1;
     private float preRoundDelay = 5;
+    private float endScreenDelay = 15;
 
     public enum GameState {
         MainMenu,
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(roundNum);
                 break;
             case GameState.EndScreen:
+                PlayWin();
                 break;
             default:
                 break;
@@ -85,6 +87,17 @@ public class GameManager : MonoBehaviour
 
     public void RoundComplete() { 
     
+    }
+
+    public void PlayWin() {
+        SceneManager.LoadScene("Victory");
+        StartCoroutine(PlayEndVideo());
+    }
+
+    private IEnumerator PlayEndVideo() {
+        yield return new WaitForSeconds(endScreenDelay);
+        roundNum = 1;
+        UpdateGameState(GameState.MainMenu);
     }
 
     private IEnumerator PlayPreRoundVideo()

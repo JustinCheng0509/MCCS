@@ -86,10 +86,10 @@ public abstract class Player : MonoBehaviour
     protected void UpdateGrounded() {
         bool wasGrounded = _isGrounded;
         _isGrounded = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(_feetCollider.transform.position, _feetCollider.radius, groundMask);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_feetCollider.transform.position, _feetCollider.radius+1f, groundMask);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject != gameObject && _rigidBody.velocity.y == 0)
+            if (colliders[i].gameObject != gameObject && _rigidBody.velocity.y <= 0.1f)
             { //make sure not colliding with self
                 //if we get in here it means we hit groundMask
                 _isGrounded = true;
@@ -227,11 +227,22 @@ public abstract class Player : MonoBehaviour
 
             }
         }
-        if (other.gameObject.tag == "Coin") {
-            Debug.Log("Coin Collected");
+    }
+
+	public void OnCollisionEnter2D(Collision2D collision)
+	{
+        if (collision.gameObject.tag == "Coin")
+        {
+           // Debug.Log("Coin Collected");
             mana += manaPerCoin;
             UpdateAbilityBar();
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Treasure")
+        {
+
+            GameManager.Instance.UpdateGameState(GameManager.GameState.EndScreen);
         }
     }
 
