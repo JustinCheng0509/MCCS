@@ -107,10 +107,10 @@ MonoBehaviour:
   abilityBar: {fileID: 0}
   isAbilityCD: 0
   abilityCD: 5
-  maxMana: 50
-  mana: 0
-  manaPS: 2
-  manaPerCoin: 5
+  maxMana: 12
+  mana: 12
+  manaPS: 1
+  manaPerCoin: 4
   maxHealth: 100
   health: 100
   didTakeDamage: 0
