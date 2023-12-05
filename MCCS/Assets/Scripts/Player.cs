@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public abstract class Player : MonoBehaviour
 {
+
     public Healthbar healthbar;
+    public Healthbar abilityBar;
     private Rigidbody2D _rigidBody;
     protected Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -13,6 +15,10 @@ public abstract class Player : MonoBehaviour
 
     public float abilityCD = 5.0f;
 
+    [SerializeField] private float maxMana = 50;
+    [SerializeField] private float mana;
+    [SerializeField] private float manaPS;
+    [SerializeField] private float manaPerCoin;
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private float health;
     [SerializeField] private bool didTakeDamage = false;
@@ -67,6 +73,7 @@ public abstract class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
+        mana = maxMana;
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         _width = _spriteRenderer.bounds.size.x/2;
@@ -145,9 +152,27 @@ public abstract class Player : MonoBehaviour
 
         if (!isAbilityCD && Input.GetButtonDown(specialName)) {
             isAbilityCD = true;
+            mana = 0;
+            abilityBar.UpdateHealthBar(mana, maxMana);
             SpecialAttack();
-            StartCoroutine(SetAbilityCD());
+            
+
+            //StartCoroutine(SetAbilityCD());
         }
+
+        if (isAbilityCD) {
+            mana += manaPS * Time.deltaTime;
+            UpdateAbilityBar();
+        }
+    }
+
+    private void UpdateAbilityBar() {
+        if (mana >= maxMana)
+        {
+            mana = maxMana;
+            isAbilityCD = false;
+        }
+        abilityBar.UpdateHealthBar(mana, maxMana);
     }
 
     private IEnumerator SetAbilityCD() {
@@ -205,7 +230,14 @@ public abstract class Player : MonoBehaviour
 
             }
         }
+        if (other.gameObject.tag == "Coin") {
+            Debug.Log("Coin Collected");
+            mana += manaPerCoin;
+            UpdateAbilityBar();
+            Destroy(other.gameObject);
+        }
     }
+
 
 	public void LateUpdate()
 	{

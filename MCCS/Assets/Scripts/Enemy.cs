@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+
+    public GameObject coinPrefab;
     public int health1;
     public int maxHealth1;
     public int health2;
@@ -36,8 +38,13 @@ public abstract class Enemy : MonoBehaviour
             if (health1 <= 0 && health2 <= 0) Destroy(gameObject);
         }else  if (health1 <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die() {
+        Instantiate(coinPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     public void SetUpHealthbars()

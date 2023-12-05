@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1124d55c530094a876e6b5734735f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 8386900283460596894, guid: e46b2e62392416c4f8743f3bc449570e, type: 3}
   health1: 5
   maxHealth1: 5
   health2: 0
